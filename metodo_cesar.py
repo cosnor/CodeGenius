@@ -1,4 +1,3 @@
-
 #funcion para cifrar por el metodo cesar
 def cifrado_cesar(frase:str, n: int)-> str:
     frase = convertir_a_mayusculas(frase)
@@ -38,29 +37,3 @@ def validacion_caracteres(frase:str)-> bool:
 #funcion para convertir la frase a mayusculas
 def convertir_a_mayusculas(frase:str)-> str:
     return frase.upper()
-  
-#Test  #esto lo puedes borrar
-# n = numero de desplazamiento
-# frase = frase a cifrar o descifrar
-if __name__ == "__main__":
-    frase = "HOLA amigos"
-    n = 3
-    frase_cifrada = cifrado_cesar(frase, n)
-    print(frase_cifrada)
-    frase_descifrada = descifrado_cesar(frase_cifrada, n)
-    print(frase_descifrada)
-    
-    frase = "HOLA ..."
-    n = 5
-    frase_cifrada = cifrado_cesar(frase, n)
-    print(frase_cifrada)
-    frase_descifrada = descifrado_cesar(frase_cifrada, n)
-    print(frase_descifrada)
-    
-    frase = "HOLA MUNDO"
-    n = 10
-    frase_cifrada = cifrado_cesar(frase, n)
-    print(frase_cifrada)
-    frase_descifrada = descifrado_cesar(frase_cifrada, n)
-    print(frase_descifrada)
-

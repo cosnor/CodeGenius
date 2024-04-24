@@ -1,37 +1,28 @@
-def codigo_desde_matriz_generadora(matriz_generadora):
-    longitud_codigo = len(matriz_generadora[0])   
-    dimension_codigo = len(matriz_generadora)   
-    distancia_minima = calcular_distancia_minima(matriz_generadora)
-    cardinalidad = 2 ** (longitud_codigo - dimension_codigo)
-    return longitud_codigo, dimension_codigo, distancia_minima, cardinalidad
+from Punto4 import *
+#Este archivo contiene las funciones que permiten analizar los parámetros de un código lineal.
+def analisis_codigo_lineal(matriz_generadora, q):
+  #Validación de la matriz generadora
+  if not all(isinstance(fila, list) for fila in matriz_generadora):
+    return "La matriz generadora debe ser una lista de listas."
 
-def calcular_distancia_minima(matriz_generadora):
-    distancia_minima = float('inf')
-    for i in range(len(matriz_generadora[0])):
-        for j in range(i + 1, len(matriz_generadora[0])):
-            distancia = calcular_distancia_entre_columnas(matriz_generadora, i, j)
-            if distancia < distancia_minima and distancia != 0:
-                distancia_minima = distancia
-    return distancia_minima
+  #Hallar los parámetros del código lineal
+  dimension = len(matriz_generadora)
+  print(matriz_generadora)
+  longitud = len(matriz_generadora[0])
+  distancia_minima = float('inf')
+  
+  #Hallar la distancia mínima
+  for fila in matriz_generadora:
+    peso = sum(1 for elemento in fila if elemento != 0)
+    distancia_minima = min(distancia_minima, peso)
 
-def calcular_distancia_entre_columnas(matriz_generadora, col1, col2):
-    distancia = 0
-    for fila in matriz_generadora:
-        if fila[col1] != fila[col2]:
-            distancia += 1
-    return distancia
+  cardinalidad = q ** dimension
+  
+  #Hallar los elementos del codigo
+  elementos = dualcode_generator(matriz_generadora, q)
+  
+    
 
-# # # Ejemplo de matriz generadora
-# matriz_generadora_lista = [[1,0,0]  ,[0,1,1]]
+  return f"Longitud: {longitud}, Dimensión: {dimension}, Distancia mínima: {distancia_minima}, Cardinalidad: {cardinalidad}, Elementos: {elementos}"
 
-# longitud_codigo, dimension_codigo, distancia_minima, cardinalidad = codigo_desde_matriz_generadora(matriz_generadora_lista)
 
-# print("Elementos del código:")
-# for fila in matriz_generadora_lista:
-#    print(fila)
-   
-# print("\nParámetros del código:")
-# print("Longitud del código:", longitud_codigo)
-# print("Dimensión del código:", dimension_codigo)
-# print("Distancia mínima del código:", distancia_minima)
-# print("\nCardinalidad del código:", cardinalidad)
